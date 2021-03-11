@@ -1,11 +1,12 @@
+import java.util.regex.*;
+
+
 public class Password {
 
 
     public static Boolean checkPassword(String password){
-
-        if(password.length() < 8 || password.length() > 25){
-            return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
+        Pattern pattern = Pattern.compile(password);
+        Matcher matcher = pattern.matcher("\b(?=[a-z]+[A-Z]+|[A-Z]+[a-z]+)[a-zA-Z0-9]{8,25}\b");
+        return matcher.matches();
     }
 }

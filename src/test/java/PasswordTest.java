@@ -22,4 +22,16 @@ public class PasswordTest {
         Boolean actual = Password.checkPassword("aaaaaaaaaaaaaaaaaaaaaaaaaa");
         Assertions.assertFalse(actual);
     }
+
+    @Test
+    void checkPassword_hasNoLowerCaseLetters(){
+        Boolean actual = Password.checkPassword("ABCDEERAERADA");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void checkPassword_hasNoUpperCaseLetters(){
+        Boolean actual = Password.checkPassword("a123aaaa2131");
+        Assertions.assertFalse(actual);
+    }
 }
