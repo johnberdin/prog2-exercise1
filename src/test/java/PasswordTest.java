@@ -24,14 +24,27 @@ public class PasswordTest {
     }
 
     @Test
-    void checkPassword_hasNoLowerCaseLetters(){
-        Boolean actual = Password.checkPassword("ABCDEERAERADA");
+    void checkPassword_LowerCaseLetters(){
+        Boolean actual = Password.checkPassword("ABCDEERAE1RADA");
         Assertions.assertFalse(actual);
     }
 
     @Test
-    void checkPassword_hasNoUpperCaseLetters(){
-        Boolean actual = Password.checkPassword("a123aaaa2131");
+    void checkPassword_UpperCaseLetters(){
+        Boolean actual = Password.checkPassword("aaaaaaaaaaaaaa");
         Assertions.assertFalse(actual);
     }
+
+    @Test
+    void checkPassword_spaces(){
+        Boolean actual = Password.checkPassword("             ");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void checkPassword_spacesWithLettersAndNumbers(){
+        Boolean actual = Password.checkPassword("    a  v 2 A    ");
+        Assertions.assertFalse(actual);
+    }
+
 }
