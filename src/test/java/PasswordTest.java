@@ -11,40 +11,52 @@ public class PasswordTest {
         System.out.println("Setup finish");
     }
 
+    @DisplayName("Testing password for the minimum length")
     @Test
     void checkPassword_tooSmall(){
-        Boolean actual = Password.checkPassword("pass");
+        Boolean actual = Password.checkPassword("FH");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for the maximum length")
     @Test
     void checkPassword_tooBig(){
-        Boolean actual = Password.checkPassword("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Boolean actual = Password.checkPassword("FhCampusWienComputerScience");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for lowercase letters")
     @Test
     void checkPassword_LowerCaseLetters(){
-        Boolean actual = Password.checkPassword("ABCDEERAE1RADA");
+        Boolean actual = Password.checkPassword("FHCAMPUSWIEN");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for uppercase letters")
     @Test
     void checkPassword_UpperCaseLetters(){
-        Boolean actual = Password.checkPassword("aaaaaaaaaaaaaa");
+        Boolean actual = Password.checkPassword("fhcampuswien");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for invalid whitespaces")
     @Test
     void checkPassword_spaces(){
-        Boolean actual = Password.checkPassword("             ");
+        Boolean actual = Password.checkPassword("fhcampusWien   ");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for invalid whitespaces with letters and numbers")
     @Test
     void checkPassword_spacesWithLettersAndNumbers(){
-        Boolean actual = Password.checkPassword("    a  v 2 A    ");
+        Boolean actual = Password.checkPassword("FhCampusWien 00");
         Assertions.assertFalse(actual);
     }
 
+    @DisplayName("Testing password for special characters")
+    @Test
+    void checkPassword_specialChars(){
+        Boolean actual = Password.checkPassword("FhCampus0Wien!");
+        Assertions.assertTrue(actual);
+    }
 }
